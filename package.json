@@ -1,0 +1,27 @@
+{
+  "name": "trabajofinal_front_back",
+  "version": "1.0.0",
+  "description": "Trabajo final de back y front",
+  "main": "index.js",
+  "scripts": {
+    "nodemonStart": "npx nodemon ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santi-50/TrabajoFinal_Front_Back.git"
+  },
+  "keywords": [],
+  "author": "Grupo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Santi-50/TrabajoFinal_Front_Back/issues"
+  },
+  "homepage": "https://github.com/Santi-50/TrabajoFinal_Front_Back#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
