@@ -24,7 +24,21 @@ app.get('/api/calendario', (req, res) => {
     res.setHeader('Content-type', 'application/json')
     res.status(200)
     res.send(JSON.stringify(Apicalendario))
-    //res.send(JSON.stringify(Apicalendario))
+
+})
+
+app.get('/api/calendario/julio', (req, res) => {
+    res.setHeader('Content-type', 'application/json')
+    res.status(200)
+    res.send(JSON.stringify(Apicalendario.Julio))
+    
+})
+
+app.get('/api/calendario/agosto', (req, res) => {
+    res.setHeader('Content-type', 'application/json')
+    res.status(200)
+    res.send(JSON.stringify(Apicalendario.Agosto))
+    
 })
 
 app.listen (PORT, HOSTNAME, () =>{
