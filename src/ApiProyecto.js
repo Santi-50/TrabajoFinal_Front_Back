@@ -3,7 +3,7 @@ Julio: [
     {
         dia: 1,
         horario: "00:00",
-        actividad: "",
+        actividad: "dentista",
     },
     {
         dia: 2,
@@ -13,7 +13,7 @@ Julio: [
     {
         dia: 3,
         horario: "00:00",
-        actividad: "",
+        actividad: "futbol",
     },
     {
         dia: 4,
@@ -161,7 +161,7 @@ Agosto: [
     {
         dia: 1,
         horario: "00:00",
-        actividad: "",
+        actividad: "pagar facturas",
     },
     {
         dia: 2,
