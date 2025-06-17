@@ -1,31 +1,33 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const calendar = document.getElementById("calendar");
-    const monthYear = document.getElementById("monthYear");
+    const calendario = document.getElementById("calendario");
+    const mes = document.getElementById("meses");
+    const anterior = document.getElementById("ant");
+    const siguiente = document.getElementById("sig");
     let currentDate = new Date();
     let events = JSON.parse(localStorage.getItem("events")) || {};
 
     function renderCalendar() {
-        calendar.innerHTML = "";
+        calendario.innerHTML = "";
         let year = currentDate.getFullYear();
         let month = currentDate.getMonth();
-        monthYear.textContent = `${new Intl.DateTimeFormat('es-ES', { month: 'long', year: 'numeric' }).format(currentDate)}`;
+        mes.textContent = `${new Intl.DateTimeFormat('es-ES', { month: 'long', year: 'numeric' }).format(currentDate)}`;
 
-        let firstDay = new Date(year, month, 1).getDay();
-        let daysInMonth = new Date(year, month + 1, 0).getDate();
+        let Dia = new Date(year, month, 1).getDay();
+        let DiaMes = new Date(year, month + 1, 0).getDate();
 
-        for (let i = 0; i < firstDay; i++) {
+        for (let i = 0; i < Dia; i++) {
             const emptyCell = document.createElement("div");
             emptyCell.className = "day";
             emptyCell.style.visibility = "hidden";
-            calendar.appendChild(emptyCell);
+            calendario.appendChild(emptyCell);
         }
 
-        for (let i = 1; i <= daysInMonth; i++) {
+        for (let i = 1; i <= DiaMes; i++) {
             const day = document.createElement("div");
             day.className = "day";
             day.textContent = i;
             day.onclick = () => addEvent(i);
-            calendar.appendChild(day);
+            calendario.appendChild(day);
             displayEvents(i, day);
         }
     }
@@ -70,15 +72,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function prevMonth() {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar();
-    }
+    anterior.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+    });
 
-    function nextMonth() {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar();
-    }
+    siguiente.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+    });
 
     renderCalendar();
 });

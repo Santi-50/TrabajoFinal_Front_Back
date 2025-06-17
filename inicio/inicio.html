@@ -12,12 +12,12 @@
         <h1>Eventra</h1>
     </div>
     <div class="nav">
-        <button onclick="prevMonth()">{{mesA}}</button>
-        <h2 id="monthYear">{{mes}}</h2>
-        <button onclick="nextMonth()">{{mesP}}</button>
+        <button id="ant" onclick="Anterior()">Anterior</button>
+        <h2 id="meses">{{mes}}</h2>
+        <button id="sig" onclick="Siguiente()">Siguiente</button>
     </div>
-    <div id="calendar" class="calendar"></div>
-
+    <div id="calendario" class="calendario">
+    </div>
     <script src="inicio.js"></script>
 </body>
 </html>

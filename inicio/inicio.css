@@ -49,13 +49,16 @@ button {
     border-radius: 5px;
 }
 
-.calendar {
+.calendario {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
     margin-top: 20px;
 }
 
+p{
+    color: white;
+}
 .day {
     background-color: rgb(92, 38, 0);
     color: white;
