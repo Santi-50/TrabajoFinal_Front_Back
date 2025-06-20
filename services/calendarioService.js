@@ -84,3 +84,39 @@ exports.updateActividadAgosto = async (id, actividadActualizada) => {
         throw new Error("error en service  " + error);
     }
 };
+
+
+// delete julio
+
+exports.deleteActividadJulioLService = async (id) => {
+    try {
+        console.log(`SERVICE - deleteFrontendLanguage - id:${id}`)
+        return await repositorioCalendario.deleteActividadJulioRepositor(id)
+    } catch (error) {
+        console.log("Error en deleteFrontendLanguage  - " + error)
+        throw Error("Error en el service: " + error)
+    }
+}
+exports.deleteActividadAgostoLService = async (id) => {
+    try {
+        console.log(`SERVICE - deleteFrontendLanguage - id:${id}`)
+        return await repositorioCalendario.deleteActividadAgostoRepository(id)
+    } catch (error) {
+        console.log("Error en deleteFrontendLanguage  - " + error)
+        throw Error("Error en el service: " + error)
+    }
+}
+
+
+exports.obtenerAlertas = async () => {
+    try {
+        const alertas = await repositorioCalendario.obtenerAlertasRepository();
+        return alertas;
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
+
+
+

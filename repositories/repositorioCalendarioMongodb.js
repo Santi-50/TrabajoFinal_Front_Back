@@ -124,3 +124,56 @@ exports.updateActividadAgostoRepository = async (dia, actividadActualizada) => {
     throw new Error("error al cambiar la actividad: " + error.message);
   }
 };
+
+//evento delete
+
+exports.deleteActividadjulioRepositoryMongoose = async (id) => {
+
+    try {
+        console.log(`REPOSITORY  - deleteFrontendLanguage - id:${id}`)
+        const actividadEliminado = await calendarioService.deleteActividadJulioLService(id)
+
+        if(!actividadEliminado){
+            console.log('Lenguaje no encontrado')
+        }else{
+            console.log('Se eliminó el lenguaje correctamente')
+            return actividadEliminado
+        }
+
+    } catch (error) {
+        console.log("deleteFrontendLanguageRepository - " + error)
+        throw Error("Error al intentar eliminar lenguaje: - " + error)
+    }
+}
+exports.deleteActividadAgostoRepositoryMongoose = async (id) => {
+
+    try {
+        console.log(`REPOSITORY  - deleteFrontendLanguage - id:${id}`)
+        const actividadEliminado2 = await calendarioService.deleteActividadAgostoLService(id)
+
+        if(!actividadEliminado2){
+            console.log('Lenguaje no encontrado')
+        }else{
+            console.log('Se eliminó el lenguaje correctamente')
+            return actividadEliminado2
+        }
+
+    } catch (error) {
+        console.log("deleteFrontendLanguageRepository - " + error)
+        throw Error("Error al intentar eliminar lenguaje: - " + error)
+    }
+}
+
+// Obtener todas las alertas (puedes agregar filtros si lo deseas)
+exports.obtenerAlertasRepository = async () => {
+    try {
+        const alertas = await Alerta.find(); // Puedes filtrar si quieres solo futuras
+        return alertas;
+    } catch (error) {
+        console.error('Error al obtener alertas:', error);
+        throw new Error('No se pudieron obtener las alertas');
+    }
+};
+
+
+
