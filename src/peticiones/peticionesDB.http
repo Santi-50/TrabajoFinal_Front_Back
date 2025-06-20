@@ -36,4 +36,5 @@ Content-Type: application/json
 {
   "horario": "12:00",
   "actividad": "asadito con amigos"
+
 }
