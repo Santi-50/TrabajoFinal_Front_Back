@@ -1,0 +1,22 @@
+<div>
+  <button (click)="prevMonth()">«</button>
+  <strong>{{ currentDate | date: 'MMMM yyyy' }}</strong>
+  <button (click)="nextMonth()">»</button>
+</div>
+
+<div class="grid">
+  <div *ngFor="let day of daysInMonth()" class="day" (click)="selectDate(day)">
+    <div>{{ day.getDate() }}</div>
+    <ul>
+      <li *ngFor="let event of getEvents(day)">
+        • {{ event.title }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="selectedDate">
+  <h4>Agregar evento para {{ selectedDate | date }}</h4>
+  <input #eventTitle type="text" placeholder="Título del evento" />
+  <button (click)="addEvent(eventTitle.value); eventTitle.value = ''">Agregar</button>
+</div>
