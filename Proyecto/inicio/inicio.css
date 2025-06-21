@@ -123,3 +123,22 @@ button {
     transform: translateY(0);
   }
 }
+.acciones {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.acciones button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.acciones button:hover {
+  background-color: #c0392b;
+}
