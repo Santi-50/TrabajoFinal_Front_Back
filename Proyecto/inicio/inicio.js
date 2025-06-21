@@ -1,3 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
 document.addEventListener("DOMContentLoaded", function() {
     const calendar = document.getElementById("calendar");
     const monthYear = document.getElementById("monthYear");
@@ -102,6 +106,22 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("Actividad no encontrada.");
     }
 }
+    // actividad.service.ts
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ActividadService {
+  private apiUrl = 'http://localhost:3000/actividades'; // Cambia por tu URL real
+
+  constructor(private http: HttpClient) {}
+
+  eliminarActividad(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+}
+
 })
 
   
