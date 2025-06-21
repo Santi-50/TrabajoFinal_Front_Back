@@ -1,5 +1,10 @@
 const express = require ('express')
-const app = express()
+const cors = require('cors');  // <--- Importar cors
+
+const app = express();
+
+app.use(cors());
+
 const HOSTNAME = '127.0.0.1';
 const PORT = 3000;
 
@@ -31,7 +36,11 @@ app.get('/{*any}', (req, res) => {
     res.send("La ruta ingresada no existe")
 })
 
-app.listen (PORT, HOSTNAME, () =>{
+/* app.listen (PORT, HOSTNAME, () =>{
 
     console.log(`El servidor EXPRESS esta corriendo en HTTP://${HOSTNAME}:${PORT}/`)
+}); */
+
+app.listen(PORT, () => {
+    console.log(`El servidor EXPRESS esta corriendo en http://localhost:${PORT}/`)
 });

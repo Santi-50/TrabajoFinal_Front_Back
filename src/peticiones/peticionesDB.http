@@ -16,7 +16,7 @@ POST {{urlcalendario}}/agosto HTTP/1.1
 Content-Type: application/json
 
 {
-    "dia": 16,
+    "dia": 5,
     "horario": "12:00",
     "actividad": "cumple Mamá y papá"
 }
@@ -33,12 +33,12 @@ Content-Type: application/json
 
 ###
 
-PATCH {{urlcalendario}}/agosto/1
+PATCH {{urlcalendario}}/agosto/5
 Content-Type: application/json
 
 {
   "horario": "12:00",
-  "actividad": "asadito con amigos"
+  "actividad": "asadito con amigos!!"
 
 }
 

@@ -1,6 +1,8 @@
 const { Apicalendario } = require('../src/ApiProyecto');
 const calendario = require('./model/calendario');
 const { getMongoDBConnection } = require('../database/conexion');
+const Alerta = require('./model/alerta'); 
+
 
 getMongoDBConnection();
 
