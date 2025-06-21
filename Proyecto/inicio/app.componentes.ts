@@ -1,5 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+constructor(private actividadService: ActividadService) {}
+
+eliminarActividad(): void {
+  const id = prompt("Ingresa el ID o nombre de la actividad a eliminar:");
+
+  if (!id) {
+    alert("No se ingresó ninguna actividad.");
+    return;
+  }
+
+  this.actividadService.eliminarActividad(id).subscribe({
+    next: () => {
+      alert("Actividad eliminada correctamente.");
+      // Opcional: recargar alertas si es necesario
+      this.cargarAlertas();
+    },
+    error: (err) => {
+      console.error(err);
+      alert("No se pudo eliminar la actividad.");
+    }
+  });
+}
 
 @Component({
   selector: 'app-alertas',
