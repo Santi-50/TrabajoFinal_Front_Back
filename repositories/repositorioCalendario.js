@@ -77,3 +77,47 @@ exports.updateActividadJulioRepository = async (id, actividadActualizada) => {
         throw Error("error al cambiar la actividad: " + error);
     }
 }
+//delete julio
+
+exports.deleteActividadJulioRepository = async (id) => {
+    try {
+        console.log(`REPOSITORIO ${id}`)
+        const indice = await Apicalendario.Julio.findIndex(actividad => actividad.dia === id)
+
+        if (indice >= 0) {
+            frontend.splice(indice, 1);
+            return frontend
+        } else {
+            return []
+        }
+    } catch (error) {
+        console.log("deleteFrontendLanguageRepository - " + error)
+        throw Error("Error al intentar eliminar lenguaje: - " + error)
+    }
+}
+exports.deleteActividadAgostoRepository = async (id) => {
+    try {
+        console.log(`REPOSITORIO :${id}`)
+        const indice = await Apicalendario.Agosto.findIndex(actividad => actividad.dia === id)
+
+        if (indice >= 0) {
+            frontend.splice(indice, 1);
+            return frontend
+        } else {
+            return []
+        }
+    } catch (error) {
+        console.log("deleteFrontendLanguageRepository - " + error)
+        throw Error("Error al intentar eliminar lenguaje: - " + error)
+    }
+}
+exports.guardarAlertaRepository = async (datosAlerta) => {
+    try {
+        const alerta = new Alerta(datosAlerta);
+        await alerta.save();
+        console.log('Alerta guardada correctamente');
+    } catch (error) {
+        console.error('Error al guardar la alerta:', error);
+        throw new Error('No se pudo guardar la alerta');
+    }
+};

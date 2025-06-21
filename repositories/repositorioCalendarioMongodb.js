@@ -124,3 +124,61 @@ exports.updateActividadAgostoRepository = async (dia, actividadActualizada) => {
     throw new Error("error al cambiar la actividad: " + error.message);
   }
 };
+
+//evento delete JULIO
+
+exports.deleteActividadJuliotoRepository = async (dia) => {
+    try {
+        console.log(`REPOSITORY - deleteActividadJulioRepository - dia: ${dia}`);
+
+        const actividadEliminada = await calendario.findOneAndDelete({ dia: dia });
+
+        if (!actividadEliminada) {
+            console.log('Actividad no encontrada');
+            return null;
+        } else {
+            console.log('Actividad eliminada correctamente');
+            return actividadEliminada;
+        }
+    } catch (error) {
+        console.log("Error en deleteActividadJulioRepository - " + error);
+        throw new Error("Error al intentar eliminar actividad: " + error.message);
+    }
+}
+
+//delete AGOSTO
+
+exports.deleteActividadAgostoRepository = async (dia) => {
+    try {
+        console.log(`REPOSITORY - deleteActividadAgostoRepository - dia: ${dia}`);
+
+        const actividadEliminada = await calendario.findOneAndDelete({ dia: dia });
+
+        if (!actividadEliminada) {
+            console.log('Actividad no encontrada');
+            return null;
+        } else {
+            console.log('Actividad eliminada correctamente');
+            return actividadEliminada;
+        }
+    } catch (error) {
+        console.log("Error en deleteActividadAgostoRepository - " + error);
+        throw new Error("Error al intentar eliminar actividad: " + error.message);
+    }
+}
+
+
+
+// Obtener todas las alertas (puedes agregar filtros si lo deseas)
+exports.obtenerAlertasRepository = async () => {
+    try {
+        const alertas = await Alerta.find(); 
+        return alertas;
+    } catch (error) {
+        console.error('Error al obtener alertas:', error);
+        throw new Error('No se pudieron obtener las alertas');
+    }
+};
+
+
+

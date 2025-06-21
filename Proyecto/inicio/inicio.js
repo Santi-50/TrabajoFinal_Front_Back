@@ -81,4 +81,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     renderCalendar();
-});
+
+    function eliminarActividad() {
+    const id = prompt("Ingresa el ID o nombre de la actividad a eliminar:");
+
+    if (!id) {
+        alert("No se ingresó ninguna actividad.");
+        return;
+    }
+
+    // Aquí depende de cómo tengas las actividades.
+    // Suponiendo que están en un array llamado `actividades`:
+    const index = actividades.findIndex(act => act.id === id || act.nombre === id);
+
+    if (index !== -1) {
+        actividades.splice(index, 1);
+        alert("Actividad eliminada.");
+        renderizarCalendario(); // Vuelve a pintar el calendario
+    } else {
+        alert("Actividad no encontrada.");
+    }
+}
+})
+
+  
+ 
+
+
+

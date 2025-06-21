@@ -118,3 +118,70 @@ exports.updateActividadAgosto = async (req, res) => {
     res.status(500).send("Error interno al actualizar la actividad");
   }
 };
+//delete julio
+
+exports.deleteActividadJulioController = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const lenguajes = await calendarioService.deleteActividadJulioLService(id)
+
+        if (lenguajes.length === 0) {
+            return res.status(404).send("no se encuentra un lenguaje con el id: " + id)
+        }
+
+        res.setHeader('Content-Type', 'application/json')
+        res.status(200)
+        res.send(lenguajes)
+    } catch (error) {
+        console.log("Error en deleteFrontendLanguage - " + error)
+        res.status(500).send({ code: 500, message: "Error al eliminar el lenguaje de frontend" })
+    }
+
+}
+// delete agosto
+/* exports.deleteActividadAgostoController = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const lenguajes = await calendarioService.deleteActividadAgostoLService(id)
+
+        if (lenguajes.length === 0) {
+            return res.status(404).send("no se encuentra un lenguaje con el id: " + id)
+        }
+
+        res.setHeader('Content-Type', 'application/json')
+        res.status(200)
+        res.send(lenguajes)
+    } catch (error) {
+        console.log("Error en deleteFrontendLanguage - " + error)
+        res.status(500).send({ code: 500, message: "Error al eliminar el lenguaje de frontend" })
+    }
+
+} */
+
+exports.deleteActividadAgostoController = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const resultado = await calendarioService.deleteActividadAgostoLService(id);
+
+        if (!resultado) {
+            return res.status(404).send("No se encuentra un lenguaje con el id: " + id);
+        }
+
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).send(resultado);
+    } catch (error) {
+        console.error("Error en eteActividadAgostoController:", error);
+        res.status(500).send({ code: 500, message: "Error al eliminar la actividad del dia seleccionado" });
+    }
+};
+
+
+exports.obtenerAlertas = async (req, res) => {
+    try {
+        const alertas = await calendarioService.obtenerAlertas();
+        res.status(200).json(alertas);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+

@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const { configDBMongoDB } = require('./config');
 
-const URI = `mongodb+srv://${configDBMongoDB.user}:${configDBMongoDB.password}@${configDBMongoDB.cluster}/${configDBMongoDB.database}?retryWrites=true&w=majority`;
+ const URI = `mongodb+srv://${configDBMongoDB.user}:${configDBMongoDB.password}@${configDBMongoDB.cluster}/${configDBMongoDB.database}?retryWrites=true&w=majority`;
+
+
 
 const getMongoDBConnection = async () => {
   try {
