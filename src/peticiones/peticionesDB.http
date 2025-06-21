@@ -12,18 +12,18 @@ GET {{urlcalendario}}/julio HTTP/1.1
 GET {{urlcalendario}}/agosto HTTP/1.1
 
 ###
-POST {{urlcalendario}}o/agosto HTTP/1.1
+POST {{urlcalendario}}/agosto HTTP/1.1
 Content-Type: application/json
 
 {
-    "dia": 4,
+    "dia": 16,
     "horario": "12:00",
-    "actividad": "Pasear al perro y a los gatos"
+    "actividad": "cumple Mamá y papá"
 }
 
 ###
 
-PATCH {{urlcalendario}}/julio/684fbb060772317203fc8d50
+PATCH {{urlcalendario}}/julio/6
 Content-Type: application/json
 
 {
@@ -33,18 +33,18 @@ Content-Type: application/json
 
 ###
 
-PATCH {{urlcalendario}}/agosto/4
+PATCH {{urlcalendario}}/agosto/1
 Content-Type: application/json
 
 {
-  "horario": "12:00",
-  "actividad": "asadito con amigos"
+  "horario": "12:30",
+  "actividad": "asadito con amigossssssssssssssssssss"
 }
 
 ###
-DELETE {{urlcalendario}}/deletejulio/1 HTTP/1.1
+DELETE {{urlcalendario}}/julio/1 HTTP/1.1
 
 
 ###
-DELETE {{urlcalendario}}/agostoagosto/ HTTP/1.1
+DELETE {{urlcalendario}}/agosto/16 HTTP/1.1
 

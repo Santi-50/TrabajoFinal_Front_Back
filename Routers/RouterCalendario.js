@@ -14,8 +14,8 @@ routerCalendario.post('/julio', Calendariocopntroller.createActividadjulio)
 routerCalendario.patch('/julio/:dia', Calendariocopntroller.updateActividadJulio)
 routerCalendario.patch('/agosto/:dia', Calendariocopntroller.updateActividadAgosto)
 routerCalendario.get('/alertas', Calendariocopntroller.obtenerAlertas);
-routerCalendario.delete('/deletejulio/:id', Calendariocopntroller.deleteActividadJulioController);
-routerCalendario.delete('/deleteagosto/:id', Calendariocopntroller.deleteActividadAgostoController);
+routerCalendario.delete('/julio/:id', Calendariocopntroller.deleteActividadJulioController);
+routerCalendario.delete('/agosto/:id', Calendariocopntroller.deleteActividadAgostoController);
 
 
 module.exports = routerCalendario;

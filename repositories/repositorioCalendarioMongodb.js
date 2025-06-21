@@ -125,49 +125,54 @@ exports.updateActividadAgostoRepository = async (dia, actividadActualizada) => {
   }
 };
 
-//evento delete
+//evento delete JULIO
 
-exports.deleteActividadjulioRepositoryMongoose = async (id) => {
-
+exports.deleteActividadJuliotoRepository = async (dia) => {
     try {
-        console.log(`REPOSITORY  - deleteFrontendLanguage - id:${id}`)
-        const actividadEliminado = await calendarioService.deleteActividadJulioLService(id)
+        console.log(`REPOSITORY - deleteActividadJulioRepository - dia: ${dia}`);
 
-        if(!actividadEliminado){
-            console.log('Lenguaje no encontrado')
-        }else{
-            console.log('Se eliminó el lenguaje correctamente')
-            return actividadEliminado
+        const actividadEliminada = await calendario.findOneAndDelete({ dia: dia });
+
+        if (!actividadEliminada) {
+            console.log('Actividad no encontrada');
+            return null;
+        } else {
+            console.log('Actividad eliminada correctamente');
+            return actividadEliminada;
         }
-
     } catch (error) {
-        console.log("deleteFrontendLanguageRepository - " + error)
-        throw Error("Error al intentar eliminar lenguaje: - " + error)
+        console.log("Error en deleteActividadJulioRepository - " + error);
+        throw new Error("Error al intentar eliminar actividad: " + error.message);
     }
 }
-exports.deleteActividadAgostoRepositoryMongoose = async (id) => {
 
+//delete AGOSTO
+
+exports.deleteActividadAgostoRepository = async (dia) => {
     try {
-        console.log(`REPOSITORY  - deleteFrontendLanguage - id:${id}`)
-        const actividadEliminado2 = await calendarioService.deleteActividadAgostoLService(id)
+        console.log(`REPOSITORY - deleteActividadAgostoRepository - dia: ${dia}`);
 
-        if(!actividadEliminado2){
-            console.log('Lenguaje no encontrado')
-        }else{
-            console.log('Se eliminó el lenguaje correctamente')
-            return actividadEliminado2
+        const actividadEliminada = await calendario.findOneAndDelete({ dia: dia });
+
+        if (!actividadEliminada) {
+            console.log('Actividad no encontrada');
+            return null;
+        } else {
+            console.log('Actividad eliminada correctamente');
+            return actividadEliminada;
         }
-
     } catch (error) {
-        console.log("deleteFrontendLanguageRepository - " + error)
-        throw Error("Error al intentar eliminar lenguaje: - " + error)
+        console.log("Error en deleteActividadAgostoRepository - " + error);
+        throw new Error("Error al intentar eliminar actividad: " + error.message);
     }
 }
+
+
 
 // Obtener todas las alertas (puedes agregar filtros si lo deseas)
 exports.obtenerAlertasRepository = async () => {
     try {
-        const alertas = await Alerta.find(); // Puedes filtrar si quieres solo futuras
+        const alertas = await Alerta.find(); 
         return alertas;
     } catch (error) {
         console.error('Error al obtener alertas:', error);

@@ -139,7 +139,7 @@ exports.deleteActividadJulioController = async (req, res) => {
 
 }
 // delete agosto
-exports.deleteActividadAgostoController = async (req, res) => {
+/* exports.deleteActividadAgostoController = async (req, res) => {
     try {
         const id = req.params.id;
         const lenguajes = await calendarioService.deleteActividadAgostoLService(id)
@@ -156,7 +156,24 @@ exports.deleteActividadAgostoController = async (req, res) => {
         res.status(500).send({ code: 500, message: "Error al eliminar el lenguaje de frontend" })
     }
 
-}
+} */
+
+exports.deleteActividadAgostoController = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const resultado = await calendarioService.deleteActividadAgostoLService(id);
+
+        if (!resultado) {
+            return res.status(404).send("No se encuentra un lenguaje con el id: " + id);
+        }
+
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).send(resultado);
+    } catch (error) {
+        console.error("Error en eteActividadAgostoController:", error);
+        res.status(500).send({ code: 500, message: "Error al eliminar la actividad del dia seleccionado" });
+    }
+};
 
 
 exports.obtenerAlertas = async (req, res) => {
