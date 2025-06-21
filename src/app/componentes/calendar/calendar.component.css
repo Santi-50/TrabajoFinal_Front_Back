@@ -1,5 +1,4 @@
 
-
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -27,7 +26,6 @@ ul {
   margin-top: 4px;
 }
 
-/* Panel evento */
 .evento-panel {
   background-color: #333;
   color: white;
@@ -52,7 +50,7 @@ ul {
   color: white;
   border-radius: 4px;
   cursor: pointer;
-  margin: 4px 3px; /
+  margin: 4px 3px; 
 }
 
 .evento-panel button:hover {

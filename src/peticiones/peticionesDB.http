@@ -23,7 +23,7 @@ Content-Type: application/json
 
 ###
 
-PATCH {{urlcalendario}}/julio/6
+PATCH {{urlcalendario}}/julio/5
 Content-Type: application/json
 
 {
@@ -37,7 +37,7 @@ PATCH {{urlcalendario}}/agosto/5
 Content-Type: application/json
 
 {
-  "horario": "12:00",
+  "horario": "20:30",
   "actividad": "asadito con amigos!!"
 
 }
@@ -47,5 +47,5 @@ DELETE {{urlcalendario}}/julio/1 HTTP/1.1
 
 
 ###
-DELETE {{urlcalendario}}/agosto/12 HTTP/1.1
+DELETE {{urlcalendario}}/agosto/5 HTTP/1.1
 

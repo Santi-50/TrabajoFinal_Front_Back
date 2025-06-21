@@ -1,20 +1,28 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface CalendarEvent {
   title: string;
+  time: string; // "HH:mm"
 }
 
 @Component({
   selector: 'app-calendar',
-  imports: [ CommonModule],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './calendar.component.html',
-  styleUrl: './calendar.component.css'
+  styleUrls: ['./calendar.component.css'],
 })
 export class CalendarComponent {
   currentDate = new Date();
   selectedDate: Date | null = null;
-  events: { [key: string]: CalendarEvent[] } = {};
+
+  // Un solo evento por día
+  events: { [key: string]: CalendarEvent | null } = {};
+
+  editTitle = '';
+  editTime = '';
 
   get month(): number {
     return this.currentDate.getMonth();
@@ -36,42 +44,60 @@ export class CalendarComponent {
 
   prevMonth(): void {
     this.currentDate = new Date(this.year, this.month - 1, 1);
+    this.selectedDate = null;
   }
 
   nextMonth(): void {
     this.currentDate = new Date(this.year, this.month + 1, 1);
+    this.selectedDate = null;
   }
 
   selectDate(date: Date): void {
     this.selectedDate = date;
+    const key = date.toDateString();
+    const event = this.events[key];
+    if (event) {
+      this.editTitle = event.title;
+      this.editTime = event.time;
+    } else {
+      this.editTitle = '';
+      this.editTime = '';
+    }
   }
 
-  addEvent(title: string): void {
+  addOrUpdateEvent(): void {
     if (!this.selectedDate) return;
+
     const key = this.selectedDate.toDateString();
-    if (!this.events[key]) this.events[key] = [];
-    this.events[key].push({ title });
+    if (this.editTitle.trim() === '') {
+      alert('La actividad no puede estar vacía');
+      return;
+    }
+    this.events[key] = {
+      title: this.editTitle,
+      time: this.editTime,
+    };
   }
 
-  getEvents(date: Date): CalendarEvent[] {
-    return this.events[date.toDateString()] || [];
+  deleteEvent(): void {
+    if (!this.selectedDate) return;
+
+    const key = this.selectedDate.toDateString();
+    delete this.events[key];
+    this.editTitle = '';
+    this.editTime = '';
   }
 
-  updateEvent(): void {
-  if (!this.selectedDate) return;
-  const key = this.selectedDate.toDateString();
-  const eventos = this.events[key];
-  if (eventos && eventos.length > 0) {
-    eventos[0].title += ' (actualizado)';
+  eventExists(): boolean {
+    if (!this.selectedDate) return false;
+    return !!this.events[this.selectedDate.toDateString()];
+  }
+
+  getEvent(date: Date): CalendarEvent | null {
+    return this.events[date.toDateString()] || null;
   }
 }
 
-deleteEvent(): void {
-  if (!this.selectedDate) return;
-  const key = this.selectedDate.toDateString();
-  delete this.events[key];
-}
 
-}
 
 export class Inicio{}
