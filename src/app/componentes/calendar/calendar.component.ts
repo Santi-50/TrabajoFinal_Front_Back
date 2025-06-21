@@ -56,6 +56,22 @@ export class CalendarComponent {
   getEvents(date: Date): CalendarEvent[] {
     return this.events[date.toDateString()] || [];
   }
+
+  updateEvent(): void {
+  if (!this.selectedDate) return;
+  const key = this.selectedDate.toDateString();
+  const eventos = this.events[key];
+  if (eventos && eventos.length > 0) {
+    eventos[0].title += ' (actualizado)';
+  }
+}
+
+deleteEvent(): void {
+  if (!this.selectedDate) return;
+  const key = this.selectedDate.toDateString();
+  delete this.events[key];
+}
+
 }
 
 export class Inicio{}

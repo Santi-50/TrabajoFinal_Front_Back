@@ -1,5 +1,5 @@
 
-<div>
+<div style="text-align: center; margin-bottom: 10px;">
   <button (click)="prevMonth()">«</button>
   <strong>{{ currentDate | date: 'MMMM yyyy' }}</strong>
   <button (click)="nextMonth()">»</button>
@@ -16,9 +16,13 @@
   </div>
 </div>
 
-
 <div *ngIf="selectedDate" class="evento-panel">
   <h4>Agregar evento para {{ selectedDate | date }}</h4>
   <input #eventTitle type="text" placeholder="Título del evento" />
-  <button (click)="addEvent(eventTitle.value); eventTitle.value = ''">Agregar</button>
+
+    <div class="botonera">
+    <button (click)="addEvent(eventTitle.value); eventTitle.value = ''">Agregar</button>
+    <button (click)="updateEvent()">Actualizar</button>
+    <button (click)="deleteEvent()">Eliminar</button>
+  </div>
 </div>
