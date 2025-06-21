@@ -1,19 +1,63 @@
+
+/* Grilla de días del calendario */
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 6px;
+  max-width: 600px;
+  margin: 20px auto;
 }
+
+/* Cada día del calendario */
 .day {
-  padding: 8px;
+  padding: 10px;
   background-color: #f0f0f0;
   cursor: pointer;
   border-radius: 4px;
+  border: 1px solid black; /* Borde negro fino */
+  text-align: center;
 }
+
 .day:hover {
   background-color: #dbeafe;
 }
+
+/* Lista de eventos dentro de un día */
 ul {
   list-style: none;
   padding-left: 0;
   margin-top: 4px;
 }
+
+/* Panel para agregar evento */
+.evento-panel {
+  background-color: #333;       
+  color: white;                 
+  padding: 12px;
+  margin: 20px auto;
+  max-width: 500px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+
+.evento-panel input {
+  padding: 6px;
+  margin-right: 6px;
+  border-radius: 4px;
+  border: 1px solid black; /* borde negro */
+}
+
+.evento-panel button {
+  padding: 6px 12px;
+  border: 1px solid white;
+  background-color: #555;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.evento-panel button:hover {
+  background-color: #777;
+}
+
