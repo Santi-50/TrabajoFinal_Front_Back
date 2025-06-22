@@ -27,27 +27,26 @@ export class CalendarComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.loadEvents(); // ✅ Carga eventos del backend al iniciar
+    this.loadEvents(); 
   }
 
-  // 🔄 Carga eventos desde el backend
+
   loadEvents(): void {
-    const mesStr = this.currentDate.getMonth() === 6 ? 'julio' : 'agosto'; // 6 = julio
-    const mesNum = this.currentDate.getMonth(); // 6 o 7
-    this.http.get<any[]>(`http://localhost:3000/api/calendario/${mesStr}`)
-      .subscribe(data => {
-        this.events = {}; // Limpiar eventos antes de cargar
-        data.forEach(evt => {
-          const dia = evt.dia;
-          const fecha = new Date(this.year, mesNum, dia);
-          const key = fecha.toDateString();
-          this.events[key] = {
-            title: evt.actividad,
-            time: evt.horario || evt.hora || ''
-          };
-        });
+  const mes = this.currentDate.getMonth() === 6 ? 'julio' : 'agosto';
+  this.http.get<any[]>(`http://localhost:3000/api/calendario/${mes}`)
+    .subscribe(data => {
+      this.events = {}; // Limpiar eventos antes de cargar
+      data.forEach(evt => {
+        const fecha = new Date(this.year, evt.mes - 1, evt.dia); // ← ✅ CORRECTO
+        const key = fecha.toDateString();
+        this.events[key] = {
+          title: evt.title || evt.actividad,
+          time: evt.time || evt.hora || evt.horario || ''
+        };
       });
-  }
+    });
+}
+
 
   get month(): number {
     return this.currentDate.getMonth();
@@ -70,13 +69,13 @@ export class CalendarComponent implements OnInit {
   prevMonth(): void {
     this.currentDate = new Date(this.year, this.month - 1, 1);
     this.selectedDate = null;
-    this.loadEvents(); // 🔁 recarga eventos del mes anterior
+    this.loadEvents(); 
   }
 
   nextMonth(): void {
     this.currentDate = new Date(this.year, this.month + 1, 1);
     this.selectedDate = null;
-    this.loadEvents(); // 🔁 recarga eventos del mes siguiente
+    this.loadEvents(); 
   }
 
   selectDate(date: Date): void {

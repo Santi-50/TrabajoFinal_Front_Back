@@ -6,7 +6,7 @@ const calendarioSchema = mongoose.Schema(
       type: Number,
       required: true
     },
-    mes: {             // nuevo campo para diferenciar mes
+    mes: {             
       type: Number,
       required: true
     },

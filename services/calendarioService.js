@@ -35,7 +35,7 @@ exports.getagostoCalendario = async () => {
 
 exports.createActividadAgosto = async (actividadNueva) => {
     try {
-        actividadNueva.mes = 8; // aseguro que mes sea agosto
+        actividadNueva.mes = 8; 
         console.log("SERVICE createActividadAgosto");
         return await repositorioCalendario.createActividadAgostoRepository(actividadNueva);
     } catch (error) {
@@ -46,7 +46,7 @@ exports.createActividadAgosto = async (actividadNueva) => {
 
 exports.createActividadJulio = async (actividadNueva) => {
     try {
-        actividadNueva.mes = 7; // aseguro que mes sea julio
+        actividadNueva.mes = 7; 
         console.log("SERVICE createActividadJulio");
         return await repositorioCalendario.createActividadJulioRepository(actividadNueva);
     } catch (error) {
@@ -59,7 +59,7 @@ exports.createActividadJulio = async (actividadNueva) => {
 exports.updateActividadJulio = async (dia, actividadActualizada) => {
     try {
         console.log("SERVICE updateActividadJulio");
-        // Opcionalmente aseguramos que mes sea 7
+        
         actividadActualizada.mes = 7;
         const resultado = await repositorioCalendario.updateActividadJulioRepository(dia, actividadActualizada);
         return resultado;
