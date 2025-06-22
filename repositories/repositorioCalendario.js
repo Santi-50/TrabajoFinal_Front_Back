@@ -14,7 +14,7 @@ exports.getCalendariocompletorepository = async () => {
 
     } catch (error) {
         console.log("error getCalendariocompletorepository" + error)
-        //forzamos e informamos un error
+        
         throw Error("error getCalendariocompletorepository" + error)
     }
 }

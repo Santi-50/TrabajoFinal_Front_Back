@@ -1,169 +1,151 @@
-const calendarioService = require('../services/calendarioService')
+const calendarioService = require('../services/calendarioService');
 
-//LEE CALENDARIO
+// LEE CALENDARIO COMPLETO
 exports.readcalendario = async (req, res) => {
     try {
-        console.log("entrando al controller")
-        res.setHeader('Content-type', 'application/json')
-        res.status(200)
-        res.send(await calendarioService.getCalendariocompleto())
+        console.log("Entrando al controller - readcalendario");
+        res.setHeader('Content-Type', 'application/json');
+        const datos = await calendarioService.getCalendariocompleto();
+        res.status(200).json(datos);
     } catch (error) {
-        console.log("error en readcalendario" + error)
+        console.error("Error en readcalendario:", error);
+        res.status(500).send("Error interno en el servidor");
     }
-}
+};
 
-//LEE JULIO
+// LEE JULIO
 exports.readcalendariojulio = async (req, res) => {
     try {
-        console.log("entrando al controller julio")
-    res.setHeader('Content-type', 'application/json')
-    res.status(200)
-    res.send(await calendarioService.getJulioCalendario()) 
+        console.log("Entrando al controller - readcalendariojulio");
+        res.setHeader('Content-Type', 'application/json');
+        const datos = await calendarioService.getJulioCalendario();
+        res.status(200).json(datos);
     } catch (error) {
-        console.log("error en readcalendario" + error)
-    }  
-}
+        console.error("Error en readcalendariojulio:", error);
+        res.status(500).send("Error interno en el servidor");
+    }
+};
 
-//LEE AGOSTO
+// LEE AGOSTO
 exports.readcalendarioAgosto = async (req, res) => {
     try {
-        console.log("entrando al controller agosto")
-    res.setHeader('Content-type', 'application/json')
-    res.status(200)
-    res.send(await calendarioService.getagostoCalendario())
+        console.log("Entrando al controller - readcalendarioAgosto");
+        res.setHeader('Content-Type', 'application/json');
+        const datos = await calendarioService.getagostoCalendario();
+        res.status(200).json(datos);
     } catch (error) {
-        console.log("error en readcalendario" + error)
-    } 
-}
-
-//POST JULIO
-exports.createActividadjulio = async (req, res) => {
-  try {
-    console.log("entrando al controller CREATE julio");
-    res.setHeader('Content-type', 'application/json')
-    const actividadNueva = req.body;
-    const resultado = await calendarioService.createActividadJulio(actividadNueva);
-    res.status(201).json(resultado);
-
-  } catch (error) {
-    console.log("ERROR " + error);
-    res.status(500).send("Error al crear la actividad: " + error.message);
-  }
+        console.error("Error en readcalendarioAgosto:", error);
+        res.status(500).send("Error interno en el servidor");
+    }
 };
 
-
-//POST AGOSTO
-exports.createActividadagosto = async (req, res) => {
+// POST JULIO
+exports.createActividadjulio = async (req, res) => {
     try {
-        console.log("entrando al controller CREATE agosto")
-        res.setHeader('Content-type', 'application/json')
+        console.log("Entrando al controller - createActividadjulio");
+        res.setHeader('Content-Type', 'application/json');
         const actividadNueva = req.body;
-
-        const resultado = await calendarioService.createActividadAgosto(actividadNueva);
+        const resultado = await calendarioService.createActividadJulio(actividadNueva);
         res.status(201).json(resultado);
-        
     } catch (error) {
-        console.log("ERROR " + error)
+        console.error("Error en createActividadjulio:", error);
         res.status(500).send("Error al crear la actividad: " + error.message);
     }
-}
-
-
-//PATCH JULIO machea lo que pasamos y los que hay y modifica solo lo que es diferente
-exports.updateActividadJulio = async (req, res) => {
-  try {
-    console.log("Entrando a update julio");
-
-    const diaNum = parseInt(req.params.dia, 10); 
-    const actividadActualizada = req.body;
-
-    console.log("Día recibido:", diaNum);
-    console.log("Datos a actualizar:", actividadActualizada);
-
-    const resultado = await calendarioService.updateActividadJulio(diaNum, actividadActualizada);
-
-    if (!resultado || resultado.length === 0) {
-      return res.status(404).send("No se encuentra la actividad con el día: " + diaNum);
-    }
-
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(resultado);
-  } catch (error) {
-    console.log("ERROR en updateActividadJulio:", error);
-    res.status(500).send("Error interno al actualizar la actividad");
-  }
 };
 
-//PATCH AGOSTO machea lo que pasamos y los que hay y modifica solo lo que es diferente
-exports.updateActividadAgosto = async (req, res) => {
-  try {
-    console.log("Entrando a update Agosto");
-
-    const diaNum = parseInt(req.params.dia, 10); 
-    const actividadActualizada = req.body;
-
-    console.log("Día recibido:", diaNum);
-    console.log("Datos a actualizar:", actividadActualizada);
-
-    const resultado = await calendarioService.updateActividadAgosto(diaNum, actividadActualizada);
-
-    if (!resultado || resultado.length === 0) {
-      return res.status(404).send("No se encuentra la actividad con el día: " + diaNum);
-    }
-
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(resultado);
-  } catch (error) {
-    console.log("ERROR en updateActividadAgosto:", error);
-    res.status(500).send("Error interno al actualizar la actividad");
-  }
-};
-//delete julio
-
-exports.deleteActividadJulioController = async (req, res) => {
+// POST AGOSTO
+exports.createActividadagosto = async (req, res) => {
     try {
-        const id = req.params.id;
-        const lenguajes = await calendarioService.deleteActividadJulioLService(id)
-
-        if (lenguajes.length === 0) {
-            return res.status(404).send("no se encuentra un lenguaje con el id: " + id)
-        }
-
-        res.setHeader('Content-Type', 'application/json')
-        res.status(200)
-        res.send(lenguajes)
+        console.log("Entrando al controller - createActividadagosto");
+        res.setHeader('Content-Type', 'application/json');
+        const actividadNueva = req.body;
+        const resultado = await calendarioService.createActividadAgosto(actividadNueva);
+        res.status(201).json(resultado);
     } catch (error) {
-        console.log("Error en deleteFrontendLanguage - " + error)
-        res.status(500).send({ code: 500, message: "Error al eliminar el lenguaje de frontend" })
+        console.error("Error en createActividadagosto:", error);
+        res.status(500).send("Error al crear la actividad: " + error.message);
     }
+};
 
-}
-
-
-exports.deleteActividadAgostoController = async (req, res) => {
+// PATCH JULIO
+exports.updateActividadJulio = async (req, res) => {
     try {
-        const id = req.params.id;
-        const resultado = await calendarioService.deleteActividadAgostoLService(id);
+        console.log("Entrando al controller - updateActividadJulio");
+        const diaNum = parseInt(req.params.dia, 10);
+        const actividadActualizada = req.body;
+        const resultado = await calendarioService.updateActividadJulio(diaNum, actividadActualizada);
 
         if (!resultado) {
-            return res.status(404).send("No se encuentra un lenguaje con el id: " + id);
+            return res.status(404).send(`No se encuentra la actividad con el día: ${diaNum}`);
         }
-
         res.setHeader('Content-Type', 'application/json');
-        res.status(200).send(resultado);
+        res.status(200).json(resultado);
     } catch (error) {
-        console.error("Error en eteActividadAgostoController:", error);
-        res.status(500).send({ code: 500, message: "Error al eliminar la actividad del dia seleccionado" });
+        console.error("Error en updateActividadJulio:", error);
+        res.status(500).send("Error interno al actualizar la actividad");
     }
 };
 
+// PATCH AGOSTO
+exports.updateActividadAgosto = async (req, res) => {
+    try {
+        console.log("Entrando al controller - updateActividadAgosto");
+        const diaNum = parseInt(req.params.dia, 10);
+        const actividadActualizada = req.body;
+        const resultado = await calendarioService.updateActividadAgosto(diaNum, actividadActualizada);
 
+        if (!resultado) {
+            return res.status(404).send(`No se encuentra la actividad con el día: ${diaNum}`);
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(resultado);
+    } catch (error) {
+        console.error("Error en updateActividadAgosto:", error);
+        res.status(500).send("Error interno al actualizar la actividad");
+    }
+};
+
+// DELETE JULIO
+exports.deleteActividadJulioController = async (req, res) => {
+    try {
+        const dia = parseInt(req.params.dia, 10);
+        const resultado = await calendarioService.deleteActividadJulioLService(dia);
+
+        if (!resultado) {
+            return res.status(404).send(`No se encuentra la actividad con el día: ${dia}`);
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(resultado);
+    } catch (error) {
+        console.error("Error en deleteActividadJulioController:", error);
+        res.status(500).send("Error al eliminar la actividad");
+    }
+};
+
+// DELETE AGOSTO
+exports.deleteActividadAgostoController = async (req, res) => {
+    try {
+        const dia = parseInt(req.params.dia, 10);
+        const resultado = await calendarioService.deleteActividadAgostoLService(dia);
+
+        if (!resultado) {
+            return res.status(404).send(`No se encuentra la actividad con el día: ${dia}`);
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(resultado);
+    } catch (error) {
+        console.error("Error en deleteActividadAgostoController:", error);
+        res.status(500).send("Error al eliminar la actividad");
+    }
+};
+
+// OBTENER ALERTAS
 exports.obtenerAlertas = async (req, res) => {
     try {
         const alertas = await calendarioService.obtenerAlertas();
         res.status(200).json(alertas);
     } catch (error) {
+        console.error("Error en obtenerAlertas:", error);
         res.status(500).json({ error: error.message });
     }
 };
-

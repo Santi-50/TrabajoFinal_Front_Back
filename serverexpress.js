@@ -1,5 +1,5 @@
 const express = require ('express')
-const cors = require('cors');  // <--- Importar cors
+const cors = require('cors'); 
 
 const app = express();
 
@@ -11,7 +11,7 @@ const PORT = 3000;
 
 const { getMongoDBConnection } = require('./database/conexion');
 
-//getMongoDBConnection();
+getMongoDBConnection();
 
 const fs = require('node:fs')
 const {Apicalendario} = require ('./src/ApiProyecto')
@@ -35,11 +35,6 @@ app.get('/{*any}', (req, res) => {
     res.status(404)
     res.send("La ruta ingresada no existe")
 })
-
-/* app.listen (PORT, HOSTNAME, () =>{
-
-    console.log(`El servidor EXPRESS esta corriendo en HTTP://${HOSTNAME}:${PORT}/`)
-}); */
 
 app.listen(PORT, () => {
     console.log(`El servidor EXPRESS esta corriendo en http://localhost:${PORT}/`)

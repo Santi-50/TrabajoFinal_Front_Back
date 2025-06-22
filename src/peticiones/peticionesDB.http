@@ -16,14 +16,26 @@ POST {{urlcalendario}}/agosto HTTP/1.1
 Content-Type: application/json
 
 {
-    "dia": 5,
-    "horario": "12:00",
-    "actividad": "cumple Mamá y papá"
+  "dia": 1,
+  "mes": 8,
+  "horario": "12:30",
+  "actividad": "Medico"
+}
+
+###
+POST {{urlcalendario}}/julio HTTP/1.1
+Content-Type: application/json
+
+{
+  "dia": 2,
+  "mes": 7,
+  "horario": "13:40",
+  "actividad": "pagar cuota colegio"
 }
 
 ###
 
-PATCH {{urlcalendario}}/julio/5
+PATCH {{urlcalendario}}/julio/25
 Content-Type: application/json
 
 {
@@ -43,9 +55,9 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{urlcalendario}}/julio/1 HTTP/1.1
+DELETE {{urlcalendario}}/julio/10 HTTP/1.1
 
 
 ###
-DELETE {{urlcalendario}}/agosto/5 HTTP/1.1
+DELETE {{urlcalendario}}/agosto/3 HTTP/1.1
 
