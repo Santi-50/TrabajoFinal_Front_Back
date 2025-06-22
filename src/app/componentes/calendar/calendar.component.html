@@ -5,11 +5,11 @@
 </div>
 
 <div class="grid">
-  <div *ngFor="let day of daysInMonth()" class="day" (click)="selectDate(day)">
+  <div *ngFor="let day of daysInMonth()" class="day" [class.evento]="getEvent(day)" (click)="selectDate(day)">
     <div>{{ day.getDate() }}</div>
     <ul>
-      <li *ngIf="getEvent(day)">
-        • {{ getEvent(day)?.time }} - {{ getEvent(day)?.title }}
+      <li *ngIf="getEvent(day) as event">
+        • {{ event.time }} - {{ event.title }}
       </li>
     </ul>
   </div>

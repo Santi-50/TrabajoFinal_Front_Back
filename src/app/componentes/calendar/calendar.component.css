@@ -64,3 +64,8 @@ ul {
   margin-top: 10px;
 }
 
+.evento {
+  background-color: #c6f6d5 !important;
+  border: 2px solid #38a169;
+  font-weight: bold;
+}
