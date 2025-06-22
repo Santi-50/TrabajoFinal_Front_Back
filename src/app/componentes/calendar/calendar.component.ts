@@ -35,9 +35,9 @@ export class CalendarComponent implements OnInit {
   const mes = this.currentDate.getMonth() === 6 ? 'julio' : 'agosto';
   this.http.get<any[]>(`http://localhost:3000/api/calendario/${mes}`)
     .subscribe(data => {
-      this.events = {}; // Limpiar eventos antes de cargar
+      this.events = {}; 
       data.forEach(evt => {
-        const fecha = new Date(this.year, evt.mes - 1, evt.dia); // ← ✅ CORRECTO
+        const fecha = new Date(this.year, evt.mes - 1, evt.dia); 
         const key = fecha.toDateString();
         this.events[key] = {
           title: evt.title || evt.actividad,
