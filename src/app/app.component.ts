@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CalendarComponent } from './componentes/calendar/calendar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,CommonModule],
+  standalone: true,
+  imports: [CommonModule, CalendarComponent],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected title = 'Eventra';
 }
+
