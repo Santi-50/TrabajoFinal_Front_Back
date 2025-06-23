@@ -11,7 +11,7 @@ const PORT = 3000;
 
 const { getMongoDBConnection } = require('./database/conexion');
 
-getMongoDBConnection();
+//getMongoDBConnection();
 
 const fs = require('node:fs')
 const {Apicalendario} = require ('./src/ApiProyecto')
